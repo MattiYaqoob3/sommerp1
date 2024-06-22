@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Year;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -29,22 +31,19 @@ public class UserController {
 
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Users> findOne(@PathVariable String id
-    ){
-        Optional<Users> users= userService.findOne(id);
-        return users.map(ResponseEntity::ok).orElseGet(
-                ()-> ResponseEntity.notFound().build()
-        );
+    public ResponseEntity<?> findOne(@PathVariable String id)
+    {
+       try {
+           return ResponseEntity.ok(userService.findOne(id));
+       }catch (NoSuchElementException e){// This NoSuchElementException is for if the user is not exist
+           return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No user found");
+       }
     }
 
 
     @GetMapping("/findall")
     public ResponseEntity<?> findAllUsers(){
-        try {
-            return ResponseEntity.ok(userService.findAllUsers());
-        }catch (EntityNotFoundException e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No user found");
-        }
+      return ResponseEntity.ok(userService.findAllUsers());
     }
 
     @PutMapping ("/update/{id}")
