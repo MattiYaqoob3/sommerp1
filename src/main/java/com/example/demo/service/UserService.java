@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -17,8 +18,8 @@ public class UserService {
         return usersRepository.save(users);
     }
 
-    public Users findOne(String id){
-        return usersRepository.findById(id).get();
+    public Optional<Users> findOne(String id){
+        return Optional.of(usersRepository.findById(id).get());
     }
 
     public List<Users> findAllUsers(){
