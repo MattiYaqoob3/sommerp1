@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -30,9 +31,12 @@ public class UserService {
         return usersRepository.save(user);
     }
 
+
+
+
     public String deleteuser(String id){
-        usersRepository.deleteById(id);
-        return "userDeleted";
+      usersRepository.deleteById(id);
+      return null;
     }
 
 

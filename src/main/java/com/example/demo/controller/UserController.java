@@ -53,8 +53,12 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteuser(@PathVariable String id){
-        return userService.deleteuser(id);
+    public ResponseEntity<?> deleteuser(@PathVariable String id){
+        try {
+            return ResponseEntity.ok(userService.deleteuser(id));
+        }catch (NoSuchElementException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not user exist");
+        }
     }
 
 
