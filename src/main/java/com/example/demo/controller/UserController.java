@@ -1,20 +1,16 @@
 package com.example.demo.controller;
 
-import com.example.demo.exceptions.EntityNotFoundException;
+import com.example.demo.dto.CreateUserDTO;
 import com.example.demo.models.Users;
 import com.example.demo.service.UserService;
 
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Year;
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -25,8 +21,8 @@ public class UserController {
 
 
     @PostMapping("/add")
-    public Users createUser(@RequestBody Users users){
-        return userService.createUser(users);
+    public CreateUserDTO createUser(@RequestBody CreateUserDTO createUserDTO){
+        return userService.createUser(createUserDTO);
     }
 
 

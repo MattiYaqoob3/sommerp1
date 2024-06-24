@@ -1,12 +1,12 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.CreateUserDTO;
 import com.example.demo.models.Users;
 import com.example.demo.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -15,8 +15,8 @@ public class UserService {
     @Autowired
     UsersRepository usersRepository;
 
-    public Users createUser(Users users){
-        return usersRepository.save(users);
+    public CreateUserDTO createUser(CreateUserDTO createUserDTO){
+        return usersRepository.save(createUserDTO);
     }
 
     public Optional<Users> findOne(String id){
