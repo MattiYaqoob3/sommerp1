@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.CreateUserDTO;
 import com.example.demo.models.Users;
 import com.example.demo.service.UserService;
 
@@ -21,8 +20,8 @@ public class UserController {
 
 
     @PostMapping("/add")
-    public CreateUserDTO createUser(@RequestBody CreateUserDTO createUserDTO){
-        return userService.createUser(createUserDTO);
+    public Users createUser(@RequestBody Users users){
+        return userService.createUser(users);
     }
 
 
@@ -49,12 +48,9 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteuser(@PathVariable String id){
-        try {
-            return ResponseEntity.ok(userService.deleteuser(id));
-        }catch (NoSuchElementException e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not user exist");
-        }
+    public String deleteuser(@PathVariable String id){
+       return userService.deleteuser(id);
+
     }
 
 

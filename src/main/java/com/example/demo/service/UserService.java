@@ -1,9 +1,8 @@
 package com.example.demo.service;
-
-import com.example.demo.dto.CreateUserDTO;
 import com.example.demo.models.Users;
 import com.example.demo.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +14,10 @@ public class UserService {
     @Autowired
     UsersRepository usersRepository;
 
-    public CreateUserDTO createUser(CreateUserDTO createUserDTO){
-        return usersRepository.save(createUserDTO);
+
+
+    public Users createUser(Users users){
+        return usersRepository.save(users);
     }
 
     public Optional<Users> findOne(String id){
@@ -30,7 +31,6 @@ public class UserService {
     public Users updareuser(Users user){
         return usersRepository.save(user);
     }
-
 
 
 
